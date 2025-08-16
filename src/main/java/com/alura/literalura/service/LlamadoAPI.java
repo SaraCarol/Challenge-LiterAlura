@@ -21,7 +21,8 @@ public class LlamadoAPI {
         URI uri = UriComponentsBuilder
                 .fromHttpUrl(URL_BASE)
                 .queryParam("search", busqueda)
-                .build(true)
+                .encode()
+                .build()
                 .toUri();
 
         var respuesta = restTemplate.getForObject(uri, ListaLibrosDTO.class);
