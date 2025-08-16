@@ -27,8 +27,13 @@ public class MenuConsola implements CommandLineRunner {
                 System.out.println("2. Historial de búsqueda");
                 System.out.println("0. Salir");
                 System.out.print("Selecciona una opción: ");
-                opcion = sc.nextInt();
-                sc.nextLine();
+                String entrada = sc.nextLine();
+                try {
+                    opcion = Integer.parseInt(entrada);
+                } catch (NumberFormatException e) {
+                    System.out.println("Opción inválida 😅 (debe ser un número)");
+                    continue;
+                }
 
                 switch (opcion){
                     case 1:

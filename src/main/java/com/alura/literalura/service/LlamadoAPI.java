@@ -26,7 +26,7 @@ public class LlamadoAPI {
                 .toUri();
 
         var respuesta = restTemplate.getForObject(uri, ListaLibrosDTO.class);
-        System.out.println("DEBUG JSON: " + respuesta);
+
         return respuesta;
     };
 };
