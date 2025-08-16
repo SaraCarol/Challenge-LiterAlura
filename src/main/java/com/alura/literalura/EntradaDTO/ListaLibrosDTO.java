@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public record ListaLibrosDTO(
-        @JsonProperty("results") List<Object> resultadoLibros
+        @JsonProperty("results") List<LibroEntradaDTO> resultadoLibros
 ) {
 
 }

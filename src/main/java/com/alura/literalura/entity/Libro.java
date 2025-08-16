@@ -7,8 +7,6 @@ public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Integer gutenbergId;
     private String titulo;
     private String idioma;
     private Integer descargas;

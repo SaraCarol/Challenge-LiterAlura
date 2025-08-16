@@ -25,13 +25,7 @@ public class LlamadoAPI {
                 .toUri();
 
         var respuesta = restTemplate.getForObject(uri, ListaLibrosDTO.class);
-        if (respuesta != null && !respuesta.resultadoLibros().isEmpty()) {
-            //Book primerLibro = response.getResults().get(0);
-            System.out.println(respuesta);
-        } else {
-            System.out.println("No se encontraron resultados");
-        }
-
+        System.out.println("DEBUG JSON: " + respuesta);
         return respuesta;
     };
 };
