@@ -2,6 +2,7 @@ package com.alura.literalura.client;
 
 import com.alura.literalura.EntradaDTO.LibroEntradaDTO;
 import com.alura.literalura.SalidaDTO.LibroSalidaDTO;
+import com.alura.literalura.service.GuardarBusquedaService;
 import com.alura.literalura.service.LlamadoAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +16,10 @@ import java.util.Scanner;
 public class MenuConsola implements CommandLineRunner {
     @Autowired
     private LlamadoAPI llamadoAPI;
+
+    @Autowired
+    private GuardarBusquedaService guardarBusquedaService;
+
     List<LibroSalidaDTO> historial = new ArrayList<>();
 
     @Override
@@ -23,7 +28,7 @@ public class MenuConsola implements CommandLineRunner {
         try (Scanner sc = new Scanner(System.in)) {
             int opcion = -1;
             while (opcion != 0) {
-                System.out.println("1. Buscar libro ");
+                System.out.println("1. Buscar y guardar libro ");
                 System.out.println("2. Historial de búsqueda de libros");
                 System.out.println("3. Historial de autores de los libros buscados");
                 System.out.println("0. Salir");
@@ -48,12 +53,17 @@ public class MenuConsola implements CommandLineRunner {
                             LibroSalidaDTO libroSalida = LibroEntradaDTO.convertirDatosSalida(primerLibro);
                             historial.add(libroSalida);
 
+                            var guardarBD = guardarBusquedaService.guardarLibro(libroSalida, libroSalida.autor());
+
                             System.out.println("\n----Resultado encontrado-----");
                             System.out.println("Título: " + libroSalida.titulo());
                             System.out.println("Autor: " + libroSalida.autor().nombre());
                             System.out.println("Idioma: " + libroSalida.idioma());
                             System.out.println("Número de descargas: " + libroSalida.numeroDescargas());
                             System.out.println("******************************");
+                            System.out.println(guardarBD);
+                            System.out.println("******************************");
+
                         }else {
                             System.out.println("No se encontraron resultados para ese título.");
                         }
