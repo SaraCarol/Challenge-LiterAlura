@@ -24,7 +24,8 @@ public class MenuConsola implements CommandLineRunner {
             int opcion = -1;
             while (opcion != 0) {
                 System.out.println("1. Buscar libro ");
-                System.out.println("2. Historial de búsqueda");
+                System.out.println("2. Historial de búsqueda de libros");
+                System.out.println("3. Historial de autores de los libros buscados");
                 System.out.println("0. Salir");
                 System.out.print("Selecciona una opción: ");
                 String entrada = sc.nextLine();
@@ -47,22 +48,34 @@ public class MenuConsola implements CommandLineRunner {
                             LibroSalidaDTO libroSalida = LibroEntradaDTO.convertirDatosSalida(primerLibro);
                             historial.add(libroSalida);
 
-                            System.out.println("\nResultado encontrado:");
+                            System.out.println("\n----Resultado encontrado-----");
                             System.out.println("Título: " + libroSalida.titulo());
                             System.out.println("Autor: " + libroSalida.autor().nombre());
                             System.out.println("Idioma: " + libroSalida.idioma());
                             System.out.println("Número de descargas: " + libroSalida.numeroDescargas());
+                            System.out.println("******************************");
                         }else {
                             System.out.println("No se encontraron resultados para ese título.");
                         }
                         break;
 
                     case 2:
-                        System.out.println("\nHistorial de búsqueda:");
+                        System.out.println("\n-----Historial de búsqueda-------");
                         if (historial.isEmpty()) {
                             System.out.println("Todavía no has buscado libros.");
                         } else {
-                            historial.forEach(l -> System.out.println(l.titulo()));
+                            historial.forEach(l -> System.out.println("Libro: " + l.titulo()));
+                            System.out.println("******************************");
+                        }
+                        break;
+
+                    case 3:
+                        if(historial.isEmpty()){
+                            System.out.println("Todavía no has buscado libros.");
+                        } else {
+                            historial.forEach(l->
+                                    System.out.println("Autor: " + l.autor().nombre()));
+                            System.out.println("******************************");
                         }
                         break;
 
