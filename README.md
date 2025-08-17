@@ -1,7 +1,8 @@
-# 📚 Library Management System
+# 📚 LiterAlura
 
 Este es un proyecto desarrollado en **Java con Spring Boot** que permite gestionar información sobre **libros y autores**.  
 Se implementa una base de datos relacional y operaciones CRUD a través de repositorios JPA.  
+La búsqueda se implementa desde la API https://gutendex.com/
 Además, cuenta con un menú interactivo en consola para consultar y manipular datos.
 
 ---
