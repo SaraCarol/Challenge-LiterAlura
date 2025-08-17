@@ -2,6 +2,7 @@ package com.alura.literalura.client;
 
 import com.alura.literalura.EntradaDTO.LibroEntradaDTO;
 import com.alura.literalura.SalidaDTO.LibroSalidaDTO;
+import com.alura.literalura.repository.LibroRepository;
 import com.alura.literalura.service.GuardarBusquedaService;
 import com.alura.literalura.service.LlamadoAPI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class MenuConsola implements CommandLineRunner {
     @Autowired
     private GuardarBusquedaService guardarBusquedaService;
 
+    @Autowired
+    private LibroRepository libroRepository;
+
     List<LibroSalidaDTO> historial = new ArrayList<>();
 
     @Override
@@ -31,6 +35,7 @@ public class MenuConsola implements CommandLineRunner {
                 System.out.println("1. Buscar y guardar libro ");
                 System.out.println("2. Historial de búsqueda de libros");
                 System.out.println("3. Historial de autores de los libros buscados");
+                System.out.println("4. Cantidad de libros por idioma");
                 System.out.println("0. Salir");
                 System.out.print("Selecciona una opción: ");
                 String entrada = sc.nextLine();
@@ -86,6 +91,13 @@ public class MenuConsola implements CommandLineRunner {
                             historial.forEach(l->
                                     System.out.println("Autor: " + l.autor().nombre()));
                             System.out.println("******************************");
+                        }
+                        break;
+
+                    case 4:
+                        List<Object[]> resultados = libroRepository.contarLibrosPorIdioma();
+                        for (Object[] r : resultados) {
+                            System.out.println("Idioma: " + r[0] + " -> " + r[1] + " libro(s)");
                         }
                         break;
 
